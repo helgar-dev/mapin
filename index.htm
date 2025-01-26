@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body
+            {
+                font-family: sans-serif;
+                padding: 20px;
+                margin: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+/*
+
+mapin mark create           # cria uma nova marcação
+mapin mark read             # exibe detalhes da marcação especificada
+mapin mark update           # atualiza a marcacao especificada
+mapin mark delete           # deleta a marcacão especificada
+mapin books create          # cria um novo material 
+mapin books read            # exibe detalhes do material especificado
+mapin books update          # atualiza o material especificado
+mapin books delete          # deleta o material especificado
+mapin last                  # exibe a última página marcada
+mapin init                  # define o diretório atual um ambiente de leitura
+mapin history               # exibe as últimas cinco páginas marcadas
+mapin progress              # exibe o progresso da leitura
+mapin finish                # declara encerrada a leitura do material selecionado
+mapin cron start            # ativa o cronometragem de leitura
+mapin cron stop             # encerra a cronometragem de leitura
+
+
+
+*/
+
+let commands = [
+    {
+        command: 'mapin mark create, mapin mark',
+        description: 'cria uma nova marcação',
+        options: 
+        [
+            {
+                name: '-p, --page',
+                description: 'a página que deseja marcar' 
+            },
+            {
+                name: '-c, --continue',
+                description: 'um trecho do texto onde se encerrou a leitura, ou de onde pretende-se retomá-la' 
+            },
+            {
+                name: '-n, --note',
+                description: 'uma anotação a respeito da leitura' 
+            },
+            {
+                name: '-v, -video',
+                description: 'o título do vídeo' 
+            },
+            {
+                name: '-m, --moment',
+                description: 'o momento do vídeo, no formato HH:MM:SS, onde parou de assistí-lo' 
+            },
+            {
+                name: '',
+                description: 'se nenhuma opção é fornecida, o programa exibe prompts para inserção de dados interativamente' 
+            },
+        ],
+        mainCmd: true
+    },
+    {
+        command: 'mapin mark read',
+        description: 'exibe detalhes da marcação especificada',
+        mainCmd: true,
+        options:
+        [
+            {
+                name: '-p, --pos, --position',
+                description: 'a posição da marcação da qual deseja exibir detalhes'
+            },
+            {
+                name: '--id',
+                description: 'o id da marcação da qual deseja exibir detalhes'
+            },
+        ]
+    },
+    {
+        command: 'mapin mark update',
+        description: 'atualiza a marcação especificada',
+        mainCmd: true,
+        options:
+        [
+            {
+                name: '-p, --pos, --position',
+                description: 'a posição da marcação que deseja atualizar'
+            },
+            {
+                name: '--id',
+                description: 'o id da marcação que deseja atualizar'
+            },
+        ]
+    },
+    {
+        command: 'mapin mark delete',
+        description: 'deleta a marcação especificada',
+        mainCmd: true,
+        options:
+        [
+            {
+                name: '-p, --pos, --position',
+                description: 'a posição da marcação que deseja excluir'
+            },
+            {
+                name: '--id',
+                description: 'o id da marcação que deseja excluir'
+            },
+        ]
+    },
+    {
+        command: 'mapin books create',
+        description: 'cria um novo material',
+        mainCmd: true
+    },
+    {
+        command: 'mapin books read',
+        description: 'exibe detalhes do material especificado',
+        mainCmd: true
+    },
+    {
+        command: 'mapin books update',
+        description: 'atualiza o material especificado',
+        mainCmd: true
+    },
+    {
+        command: 'mapin books delete',
+        description: 'deleta o material especificado',
+        mainCmd: true
+    },
+    {
+        command: 'mapin last',
+        description: 'exibe a última página marcada',
+        mainCmd: true
+    },
+    {
+        command: 'mapin init',
+        description: 'define o diretório atual um ambiente de leitura',
+        mainCmd: true
+    },
+    {
+        command: 'mapin history',
+        description: 'exibe as últimas cinco páginas marcadas',
+        mainCmd: true
+    },
+    {
+        command: 'mapin progress',
+        description: 'exibe o progresso da leitura',
+        mainCmd: true
+    },
+    {
+        command: 'mapin finish',
+        description: 'declara encerrada a leitura do material selecionado',
+        mainCmd: true
+    },
+    {
+        command: 'mapin cron start',
+        description: 'ativa o cronometragem de leitura',
+        mainCmd: true
+    },
+    {
+        command: 'mapin cron stop',
+        description: 'encerra a cronometragem de leitura',
+        mainCmd: true
+    },
+    {
+        command: 'mapin export <filename>',
+        description: 'exporta os dados de leitura para um arquivo',
+        mainCmd: true
+    },
+    {
+        command: 'mapin stats',
+        description: 'exibe estatísticas de leitura',
+        mainCmd: true
+    },
+];
+
+document.body.innerHTML = '';
+const el0 = document.createElement('h3');
+el0.textContent =  `MAPIN`;
+document.body.appendChild(el0);
+
+const elP0 = document.createElement('p');
+elP0.textContent = 
+`
+Mapin é um programa simples e de fácil utilização que facilita a marcação de páginas de livros, permitindo que os usuários retomem suas leituras exatamente do ponto onde pararam. Elabora, a partir das informações fornecidas, relatórios e estatísticas de leitura que ajudam a monitorar o progresso dos estudos e a estimar o tempo necessário para concluir suas leituras. Com ele, você pode organizar sua experiência de leitura de uma maneira prática e eficiente.
+`;
+document.body.appendChild(elP0);
+
+const elP1 = document.createElement('p');
+elP1.textContent = 
+`
+A quem o Mapin é destinado? Usuários familiarizados com com a utilização da linha de comando em computadores Linux; Usuários interessados na automatização de processos ou codificação de sistemas, que podem incorporar as funcionalidades fornecidas pela ferramenta em seus próprios projetos; Ou, através de uma de suas interfaces gráficas, qualquer pessoa que deseja facilitar a realização e registro de suas leituras.
+`;
+document.body.appendChild(elP1);
+
+document.body.style.padding = '20px';
+for(let i=0; i<commands.length; i++)
+{
+    const commandElement = document.createElement('div');
+    commandElement.style.display = 'grid';
+    commandElement.style.gridTemplateColumns = 'minmax(200px, 500px) auto';
+    commandElement.style.gridTemplateAreas = "'.. ..'";
+
+    const commandText = document.createElement('div');
+    commandText.textContent = commands[i].command;
+    commandText.style.fontWeight = 'bold';
+
+    const descriptionText = document.createElement('div');
+    descriptionText.textContent = commands[i].description;
+
+    commandElement.appendChild(commandText);
+    commandElement.appendChild(descriptionText);
+
+    document.body.appendChild(commandElement);
+
+    if(typeof commands[i].options !== 'undefined')
+    {
+        for(let j=0; j<commands[i].options.length; j++)
+        {
+            const elOptionName = document.createElement('div');
+            elOptionName.textContent = commands[i].options[j].name;
+            elOptionName.style.paddingLeft = '20px';
+
+            const elOptionDesc = document.createElement('div');
+            elOptionDesc.textContent = commands[i].options[j].description;
+
+            commandElement.appendChild(elOptionName);
+            commandElement.appendChild(elOptionDesc);
+
+            document.body.appendChild(commandElement);
+        }
+    }
+
+    
+}
+        </script>
+    </body>
+</html>
