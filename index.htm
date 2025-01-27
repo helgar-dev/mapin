@@ -126,7 +126,18 @@ let commands = [
     {
         command: 'mapin books create',
         description: 'cria um novo material',
-        mainCmd: true
+        mainCmd: true,
+        options:
+        [
+            {
+                name: '--input-format',
+                description: 'permite inserir dados com o formato especificado. Formatos disponíveis: json'
+            },
+            {
+                name: '--output-format',
+                description: 'exibe resultados no formato especificado. Formatos disponíveis: json'
+            }
+        ]
     },
     {
         command: 'mapin books read',
