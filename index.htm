@@ -29,9 +29,6 @@ mapin progress              # exibe o progresso da leitura
 mapin finish                # declara encerrada a leitura do material selecionado
 mapin cron start            # ativa o cronometragem de leitura
 mapin cron stop             # encerra a cronometragem de leitura
-
-
-
 */
 
 let commands = [
@@ -71,6 +68,10 @@ let commands = [
             {
                 name: '--output-format',
                 description: 'exibe resultados no formato especificado. Formatos disponíveis: json'
+            },
+            {
+                name: '--show-fields',
+                description: 'exibe os campos que compōem uma marca'
             }
         ],
         mainCmd: true
