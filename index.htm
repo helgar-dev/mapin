@@ -169,7 +169,19 @@ let commands = [
   {
     name: '--total-pages',
     description: 'a quantidade total de páginas'
-  }
+  },
+  {
+     name: "--plataform",
+   description: "a plataforma que o vídeo tem origem"
+},
+{
+   name: "--multiple-videos",
+   description: "se o conteúdo em video é composto por múltiplos vídeos"
+},
+{
+   name: "--total-duration",
+   description: "a duração total(s) do vídeo(s) que está se marcando"
+}
         ]
     },
     {
@@ -242,7 +254,7 @@ document.body.appendChild(el0);
 const elP0 = document.createElement('p');
 elP0.textContent = 
 `
-Mapin é um programa simples e de fácil utilização que facilita a marcação de páginas de livros, permitindo que os usuários retomem suas leituras exatamente do ponto onde pararam. Elabora, a partir das informações fornecidas, relatórios e estatísticas de leitura que ajudam a monitorar o progresso dos estudos e a estimar o tempo necessário para concluir suas leituras. Com ele, você pode organizar sua experiência de leitura de uma maneira prática e eficiente.
+Mapin é um programa simples e de fácil utilização que facilita a marcação de páginas de livros, permitindo que os usuários retomem suas leituras exatamente do ponto onde pararam. Elabora, a partir das informações fornecidas, relatórios e estatísticas de leitura que ajudam a monitorar o progresso dos estudos e a estimar o tempo necessário para concluí-los. Com ele, você pode organizar sua experiência de leitura de uma maneira prática e eficiente.
 `;
 document.body.appendChild(elP0);
 
