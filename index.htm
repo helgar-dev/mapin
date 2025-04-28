@@ -14,10 +14,7 @@
         <script>
 /*
 
-mapin mark create           # cria uma nova marcação
-mapin mark read             # exibe detalhes da marcação especificada
-mapin mark update           # atualiza a marcacao especificada
-mapin mark delete           # deleta a marcacão especificada
+mapin mark                  # cria uma nova marcação
 mapin books create          # cria um novo material 
 mapin books read            # exibe detalhes do material especificado
 mapin books update          # atualiza o material especificado
@@ -25,10 +22,16 @@ mapin books delete          # deleta o material especificado
 mapin last                  # exibe a última página marcada
 mapin init                  # define o diretório atual um ambiente de leitura
 mapin history               # exibe as últimas cinco páginas marcadas
-mapin progress              # exibe o progresso da leitura
+mapin progress/status       # exibe o progresso da leitura
 mapin finish                # declara encerrada a leitura do material selecionado
 mapin cron start            # ativa o cronometragem de leitura
 mapin cron stop             # encerra a cronometragem de leitura
+mapin use <content>         # seleciona um marca páginas a partir do id
+mapin create                # cria um novo marca páginas, exibe prompts para a inserção dados do conteúdo a ser marcado
+mapin list                  # lista os marca páginas disponíveis
+
+Tipo Nome Id Progresso
+
 */
 
 let commands = [
