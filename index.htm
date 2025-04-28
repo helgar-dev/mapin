@@ -15,20 +15,29 @@
 /*
 
 mapin mark                  # cria uma nova marcação
-mapin books create          # cria um novo material 
-mapin books read            # exibe detalhes do material especificado
-mapin books update          # atualiza o material especificado
-mapin books delete          # deleta o material especificado
 mapin last                  # exibe a última página marcada
-mapin init                  # define o diretório atual um ambiente de leitura
+mapin init                  # cria um novo marcador de páginas e o associa ao diretório
+mapin vincular <bookmark>   # vincula um diretório a um marcador de páginas
 mapin history               # exibe as últimas cinco páginas marcadas
 mapin progress/status       # exibe o progresso da leitura
 mapin finish                # declara encerrada a leitura do material selecionado
 mapin cron start            # ativa o cronometragem de leitura
 mapin cron stop             # encerra a cronometragem de leitura
-mapin use <content>         # seleciona um marca páginas a partir do id
-mapin create                # cria um novo marca páginas, exibe prompts para a inserção dados do conteúdo a ser marcado
-mapin list                  # lista os marca páginas disponíveis
+mapin use <marcapaginas>    # seleciona um marca páginas a partir do id
+mapin create                # cria um novo marcador de páginas (exibe prompts para a inserção dados do conteúdo a ser marcado)
+mapin list                  # lista os marcadores de páginas disponíveis
+mapin details <bookmark>    # exibe detalhes do marcador de páginas especificado
+mapin delete <bookmark>     # apaga o marcador páginas especificado
+mapin update <bookmark>     # atualiza dados do marcador de páginas especificado
+
+talvez, para tornar comandos mais expressivos,
+utilizar estrutura
+
+mapin bookmarks list 
+mapin bookmarks create 
+mapin bookmarks read <bookmark> 
+mapin bookmarks update <bookmark> 
+mapin bookmarks delete <bookmark> 
 
 Tipo Nome Id Progresso
 
